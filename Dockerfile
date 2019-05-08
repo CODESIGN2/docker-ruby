@@ -1,8 +1,8 @@
-ARG RUBY_VERSION
-FROM ruby:${RUBY_VERSION}-alpine
+ARG BASE_VERSION
+FROM ruby:${BASE_VERSION}-alpine
 MAINTAINER codesign2@icloud.com
 
-ENV RUBY_VERSION=${RUBY_VERSION}
+ENV BASE_VERSION=${BASE_VERSION}
 
 # Build deps
 RUN apk update \

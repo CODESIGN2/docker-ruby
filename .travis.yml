@@ -4,22 +4,17 @@ services:
   - docker
 
 env:
-  - RUBY_VERSION=1.8
-  - RUBY_VERSION=1.9
-  - RUBY_VERSION=2.0
-  - RUBY_VERSION=2.1
-  - RUBY_VERSION=2.2
-  - RUBY_VERSION=2.3
-  - RUBY_VERSION=2.4
-  - RUBY_VERSION=2.5
-  - RUBY_VERSION=2.6
+  - BASE_VERSION=2.3
+  - BASE_VERSION=2.4
+  - BASE_VERSION=2.5
+  - BASE_VERSION=2.6
 
 before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
-  - docker build -t cd2team/docker-ruby:$RUBY_VERSION ./ --build-arg RUBY_VERSION=$RUBY_VERSION
+  - docker build -t cd2team/docker-ruby:$BASE_VERSION ./ --build-arg BASE_VERSION=$BASE_VERSION
 
 deploy:
   provider: script
-  script: "docker push cd2team/docker-ruby:$RUBY_VERSION"
+  script: "docker push cd2team/docker-ruby:$BASE_VERSION"
